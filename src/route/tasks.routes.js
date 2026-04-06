@@ -1,20 +1,39 @@
-import express from 'express'
+import express from 'express';
 
-const taskRoutes = express.Router()
+import {
+  createTask,
+  getAllTasks,
+  getTaskById,
+  updateTask,
+  partialUpdateTask,
+  updateTaskStatus,
+  reassignTask,
+  deleteTask
+} from '../controller/task.controller.js';
 
-taskRoutes.get('/');
+const taskRoutes = express.Router();
 
-taskRoutes.get('/:taskId');
-
-taskRoutes.put('/:taskId');
-
-taskRoutes.patch('/:taskId');
-
-taskRoutes.patch('/:taskId/status');
-
-taskRoutes.patch('/:taskId/assign');
-
-taskRoutes.delete('/:taskId');
+taskRoutes.post('/', createTask);
 
 
-export default taskRoutes
+taskRoutes.get('/', getAllTasks);
+
+
+taskRoutes.get('/:taskId', getTaskById);
+
+
+taskRoutes.put('/:taskId', updateTask);
+
+
+taskRoutes.patch('/:taskId', partialUpdateTask);
+
+
+taskRoutes.patch('/:taskId/status', updateTaskStatus);
+
+
+taskRoutes.patch('/:taskId/assign', reassignTask);
+
+
+taskRoutes.delete('/:taskId', deleteTask);
+
+export default taskRoutes;
